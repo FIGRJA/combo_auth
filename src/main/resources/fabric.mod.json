@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "combo_auth",
+  "version": "${version}",
+  "name": "Combo Auth",
+  "description": "мод позволяет заходить игрокам на сервер имея аккаунт Ely.by или Mojang( официальое )",
+  "authors": ["FIGRJA"],
+  "contact": {
+    "homepage": "https://vk.com/FIGRJA"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "mixins": ["Combo_Auth.mixins.json"],
+  "entrypoints": {
+  },
+  "icon": "icon.png",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": ">=1.19.4"
+  }
+}
