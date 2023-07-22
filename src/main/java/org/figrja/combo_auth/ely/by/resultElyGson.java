@@ -1,25 +1,46 @@
 package org.figrja.combo_auth.ely.by;
 
-import java.util.List;
+import com.mojang.authlib.properties.Property;
+
+import java.util.UUID;
 
 public class resultElyGson {
+
+    private String error;
+
+    private String errorMessage;
+
     String id;
 
-    String name;
+    private UUID Id;
 
-    String error;
+    private String name;
 
-    String errorMessage;
+    private Property[] properties;
 
-    List<properti> properties;
+    public UUID getId() {
+        return Id;
+    }
 
-}
-class properti {
+    public void setId(UUID id) {
+        Id = id;
+    }
 
-    String Name;
+    public String getName() {
+        return name;
+    }
 
-    String value;
+    public Property[] getProperties() {
+        return properties;
+    }
 
-    String signature;
+    public String getError() {
+        return error;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
 
 }

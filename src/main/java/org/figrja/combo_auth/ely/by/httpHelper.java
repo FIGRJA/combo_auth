@@ -180,17 +180,17 @@ public class httpHelper {
         }
     }
 
-    protected static UUID makeRequest(URL url) throws AuthenticationException {
+    protected static resultElyGson makeRequest(URL url) throws AuthenticationException {
         try {
             String jsonResult = performGetRequest(url) ;
             resultElyGson result = gson.fromJson(jsonResult, resultElyGson.class);
             if (result == null) {
                 return null;
-            } else if (result.error != null) {
+            } else if (result.getError() != null) {
                 return null;
             }
-
-            return str2uuid(result.id);
+            result.setId(str2uuid(result.id));
+            return result;
         } catch (IOException var6) {
             throw new AuthenticationUnavailableException("Cannot contact authentication server", var6);
         }
