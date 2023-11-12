@@ -12,11 +12,12 @@
   "environment": "*",
   "mixins": ["Combo_Auth.mixins.json"],
   "entrypoints": {
+    "server": ["org.figrja.combo_auth.auth"]
   },
   "icon": "icon.png",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": ">=1.19.4"
+    "minecraft": ">=1.20.2"
   }
 }
