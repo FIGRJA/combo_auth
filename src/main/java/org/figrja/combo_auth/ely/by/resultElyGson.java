@@ -1,6 +1,7 @@
 package org.figrja.combo_auth.ely.by;
 
 import com.mojang.authlib.properties.Property;
+import com.mojang.authlib.properties.PropertyMap;
 
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class resultElyGson {
 
     private String name;
 
-    private Property[] properties;
+    private propery[] properties;
 
     public UUID getId() {
         return Id;
@@ -30,8 +31,12 @@ public class resultElyGson {
         return name;
     }
 
-    public Property[] getProperties() {
-        return properties;
+    public PropertyMap getProperties() {
+        PropertyMap pm = new PropertyMap();
+        for (propery p :properties){
+            pm.put(p.name(),new Property(p.name(),p.value(),p.signature()));
+        }
+        return pm;
     }
 
     public String getError() {
@@ -44,3 +49,5 @@ public class resultElyGson {
 
 
 }
+
+

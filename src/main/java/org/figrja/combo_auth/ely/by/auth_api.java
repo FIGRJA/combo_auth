@@ -6,6 +6,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import com.mojang.authlib.properties.Property;
+import com.mojang.authlib.properties.PropertyMap;
 import org.figrja.combo_auth.auth;
 import org.figrja.combo_auth.config.ConfigPro;
 
@@ -34,7 +35,7 @@ public class auth_api {
                 final GameProfile result = new GameProfile(response.getId(), response.getName());
 
                 if (response.getProperties() != null) {
-                    Property[] properties;
+                    PropertyMap properties;
                     if (CONFIG.isBoolean("singEnable")) {
                         PROPERTY_URL = CONFIG.isString("PROPERTY_URL") == null ? PROPERTY_URL : CONFIG.isString("PROPERTY_URL");
                         URL p_url = httpHelper.concatenateURL(httpHelper.constantURL(MessageFormat.format(PROPERTY_URL,user.getName(),response.getId())), httpHelper.buildQuery(null));
@@ -43,7 +44,7 @@ public class auth_api {
                     }else {
                         properties = response.getProperties();
                     }
-                    result.getProperties().putAll(properties2map(properties));
+                    result.getProperties().putAll(properties);
                 }
 
                 return result;
@@ -57,14 +58,6 @@ public class auth_api {
         }
     }
 
-    private static Multimap<String,Property> properties2map(Property[] properties){
-            Multimap<String,Property> result = LinkedHashMultimap.create();
-            for(Property p :properties){
-                result.put(p.getName(), p);
-            }
-            return result;
-
-    }
 
 
 }
