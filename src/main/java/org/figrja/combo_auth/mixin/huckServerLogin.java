@@ -36,20 +36,17 @@ public abstract class huckServerLogin {
     @Shadow
     MinecraftServer server;
 
+
     uuidBase base = auth.getConfigJson().getUuidBase();
 
-    @Shadow
-    @Nullable
-    GameProfile profile;
     private static Integer stade;
 
     private ConfigPro CONFIG = auth.getConfigPro();
-    private String Name;
     private String strings;
 
     @Inject(at = @At("TAIL"),method = "onHello")
-    public void packet2Name( LoginHelloC2SPacket packet, CallbackInfo ci){
-        Name = profile.getName();
+    public void packet2Name(LoginHelloC2SPacket packet, CallbackInfo ci){
+
         stade = 0;
     }
 
@@ -60,6 +57,7 @@ public abstract class huckServerLogin {
         strings = (new BigInteger(NetworkEncryptionUtils.computeServerId("", this.server.getKeyPair().getPublic(), secretKey))).toString(16);
     }
 
+
     @Inject(at = @At("HEAD"),method = "disconnect",cancellable = true)
     public void init(Text reason, CallbackInfo ci) throws AuthenticationUnavailableException {
         if(reason.equals(Text.translatable("multiplayer.disconnect.authservers_down"))){
@@ -69,24 +67,27 @@ public abstract class huckServerLogin {
         }
         if (reason.equals(Text.translatable("multiplayer.disconnect.unverified_username"))){
             stade = 2;
-            GameProfile ElyProfile = org.figrja.combo_auth.ely.by.auth_api.hasJoinedServer(new GameProfile((UUID)null, Name), strings);
+            GameProfile ElyProfile = org.figrja.combo_auth.ely.by.auth_api.hasJoinedServer(new GameProfile(UUID.fromString("00000000-0000-0000-0000-000000000000"), profileName), strings);
 
             if (ElyProfile != null){
 
-                this.profile = ElyProfile;
                 stade = 1;
-                LOGGER.info("UUID of player {} is {} with a Ely.by", this.profile.getName(), this.profile.getId());
-                this.acceptPlayer();
+                LOGGER.info("UUID of player {} is {} with a Ely.by", ElyProfile.getName(), ElyProfile.getId());
+                this.startVerify(ElyProfile);
                 ci.cancel();
             }
         }
     }
 
     @Shadow
-    public abstract void acceptPlayer();
+    public abstract void startVerify(GameProfile profile);
 
-    @Inject(at = @At("HEAD"),method = "acceptPlayer")
-    public void uuidDefend(CallbackInfo ci){
+    @Shadow @Nullable private String profileName;
+
+    @Shadow @Nullable private GameProfile profile;
+
+    @Inject(at = @At("HEAD"),method = "startVerify")
+    public void uuidDefend(GameProfile profile,CallbackInfo ci){
 
         if (server.isOnlineMode()){
             UUID[] uuid = base.baseUUID.get(profile.getId());
@@ -107,8 +108,8 @@ public abstract class huckServerLogin {
                 base.baseUUID.get(profile.getId())[stade] = randomUUID;
 
                 PropertyMap propertyMap = profile.getProperties();
-                this.profile = new GameProfile(randomUUID, profile.getName());
-                this.profile.getProperties().putAll(propertyMap);
+                profile = new GameProfile(randomUUID, profile.getName());
+                profile.getProperties().putAll(propertyMap);
 
                 base.baseUUID.put(profile.getId(),new UUID[2]);
                 base.baseUUID.get(profile.getId())[stade] = profile.getId();
@@ -118,8 +119,8 @@ public abstract class huckServerLogin {
             }
             else if (!uuid[stade].equals(profile.getId())){
                 PropertyMap propertyMap = profile.getProperties();
-                this.profile = new GameProfile(uuid[stade], profile.getName());
-                this.profile.getProperties().putAll(propertyMap);
+                profile = new GameProfile(uuid[stade], profile.getName());
+                profile.getProperties().putAll(propertyMap);
                 LOGGER.info("update UUID : {}",profile.getId().toString());
             }
 
