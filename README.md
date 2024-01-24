@@ -1,8 +1,8 @@
-This small mod allows players with Ely,by accounts to enter the server with `online_mode=true` without interfering with players with Mojang accounts.
+This small mod allows players with Ely.by accounts to enter the server with `online_mode=true` without interfering with players with Mojang accounts.
 
 The mod just combines two authentication systems without interfering with the server itself.
 
-First comes authentication with **Mojang** servers, and after an unsuccessful login, there is a check on **Ely,by**. If there and there did not pass the test, then the player is **not allowed** on the server.
+First comes authentication with **Mojang** servers, and after an unsuccessful login, there is a check on **Ely.by**. If there and there did not pass the test, then the player is **not allowed** on the server.
 
 In order to achieve this result, it was necessary to download the patch from the official site Ely.by, which was not convenient and prevented players with official accounts from logging in.
 
