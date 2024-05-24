@@ -180,7 +180,7 @@ public class httpHelper {
         }
     }
 
-    protected static resultElyGson makeRequest(URL url) throws AuthenticationException {
+    public static resultElyGson makeRequest(URL url) throws AuthenticationException {
         try {
             String jsonResult = performGetRequest(url) ;
             resultElyGson result = gson.fromJson(jsonResult, resultElyGson.class);
