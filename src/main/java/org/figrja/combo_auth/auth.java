@@ -72,8 +72,11 @@ public class auth implements DedicatedServerModInitializer {
         }
 
 
-
-        LOGGER.info("combo_auth has been enabled!");
+        if (config != null) {
+            LOGGER.info("combo_auth has been enabled!");
+        }else{
+            throw null;
+        }
 
     }
 

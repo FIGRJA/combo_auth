@@ -3,7 +3,7 @@
     "mojang",
     "elyby"
   ],
-  "AuthS": [
+  "AuthSchema": [
     {
       "mojang": {
         "url_check":"https://sessionserver.mojang.com/session/minecraft/hasJoined" ,
