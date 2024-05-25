@@ -33,7 +33,7 @@ public class auth implements DedicatedServerModInitializer {
         File ConfFile = FabricLoader.getInstance().getConfigDir().resolve( "combo_auth.json" ).toFile();
 
         try {
-            config = gson.fromJson(new JsonReader(new BufferedReader(new InputStreamReader(new FileInputStream(ConfFile)))),configGson.class);
+            config = gson.fromJson(new JsonReader(new FileReader(ConfFile)),configGson.class);
             LOGGER.info(config == null);
         } catch (FileNotFoundException e) {
             try {
@@ -45,13 +45,19 @@ public class auth implements DedicatedServerModInitializer {
                 }else {
                     LOGGER.info("wtf inputStream of config in jar is null");
                 }
-                PrintWriter printWriter = new PrintWriter(ConfFile);
-                Scanner scanner = new Scanner(inputStream);
-                while (scanner.hasNextLine()){printWriter.println(scanner.nextLine());}
-                scanner.close();
+                if (inputStream != null) {
+                    PrintWriter printWriter = new PrintWriter(ConfFile);
+                    Scanner scanner = new Scanner(inputStream);
+                    while (scanner.hasNextLine()) {
+                        printWriter.println(scanner.nextLine());
+                    }
+                    scanner.close();
+
                 printWriter.flush();
                 printWriter.close();
-
+                }else {
+                    LOGGER.info("wtf inputStream of config in jar is null too");
+                }
                 inputStream.close();
             } catch (IOException ex) {
                 LOGGER.info("can't create new config");
