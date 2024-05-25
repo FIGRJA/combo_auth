@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class auth implements DedicatedServerModInitializer {
 
-    static configGson config;
+    private static configGson config;
     private static final Gson gson = new Gson();
 
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger("combo_auth");
@@ -56,8 +56,10 @@ public class auth implements DedicatedServerModInitializer {
 
         if (config.getGebugStatus() != null){
             if (config.getGebugStatus().equals("detail")){
+                LOGGER.info("debug");
                 Logger = new Debug(LOGGER);
             }if (config.getGebugStatus().equals("all")){
+                LOGGER.info("ALLdebug");
                 Logger = new DebugAll(LOGGER);
             }
         }else{

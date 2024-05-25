@@ -30,7 +30,7 @@ public class ReCheckAuth {
 
     configGson CONFIG = auth.getConfig();
 
-    @Inject(at = @At("HEAD"),method = "hasJoinedServer",remap = false)
+    @Inject(at = @At("HEAD"),method = "hasJoinedServer",remap = false,cancellable = true)
     public void AuthListCheck(String profileName, String serverId, InetAddress address, CallbackInfoReturnable<ProfileResult> cir) throws AuthenticationUnavailableException {
         Map<String, Object> arguments = new HashMap();
         arguments.put("username", profileName);
@@ -73,8 +73,9 @@ public class ReCheckAuth {
                         LOGGER.debug("add custom property");
                         result.getProperties().putAll(authSchema.getProperty());
                     }
-
+                    LOGGER.info("logging from "+name);
                     cir.setReturnValue(new ProfileResult(result));
+                    cir.cancel();
                 }
             } catch (AuthenticationUnavailableException var7) {
                 tr = true;
@@ -89,6 +90,7 @@ public class ReCheckAuth {
         if (AuthenticationException){
             cir.setReturnValue(null);
         }
+        cir.cancel();
     }
 
 }
