@@ -55,7 +55,7 @@ public class ReCheckAuth {
                             LOGGER.debug("custom property");
                             LOGGER.debugRes("in "+authSchema.getUrlProperty() );
                             String PROPERTY_URL = authSchema.getUrlProperty();
-                            URL p_url = httpHelper.concatenateURL(httpHelper.constantURL(MessageFormat.format(PROPERTY_URL, profileName, response.getId())), httpHelper.buildQuery(null));
+                            URL p_url = httpHelper.concatenateURL(httpHelper.constantURL(MessageFormat.format(PROPERTY_URL, profileName.getName(), response.getId())), httpHelper.buildQuery(null));
                             resultElyGson pr = httpHelper.makeRequest(p_url);
                             if (pr != null) {
                                 properties = pr.getProperties();
