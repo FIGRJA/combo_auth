@@ -33,8 +33,7 @@ public class auth implements DedicatedServerModInitializer {
         File ConfFile = FabricLoader.getInstance().getConfigDir().resolve( "combo_auth.json" ).toFile();
         JsonReader reader = null;
         try {
-            reader = new JsonReader(new FileReader(ConfFile));
-            config = gson.fromJson(reader,configGson.class);
+            config = gson.fromJson(new JsonReader(new FileReader(ConfFile)),configGson.class);
         } catch (FileNotFoundException e) {
             try {
                 LOGGER.info("create new config");
