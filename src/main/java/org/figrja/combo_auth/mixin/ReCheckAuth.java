@@ -4,7 +4,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import com.mojang.authlib.properties.PropertyMap;
-import com.mojang.authlib.yggdrasil.ProfileResult;
 import com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService;
 import org.figrja.combo_auth.auth;
 import org.figrja.combo_auth.config.AuthSchemaList;
@@ -31,9 +30,9 @@ public class ReCheckAuth {
     configGson CONFIG = auth.getConfig();
 
     @Inject(at = @At("HEAD"),method = "hasJoinedServer",remap = false,cancellable = true)
-    public void AuthListCheck(String profileName, String serverId, InetAddress address, CallbackInfoReturnable<ProfileResult> cir) throws AuthenticationUnavailableException {
+    public void AuthListCheck(GameProfile profileName, String serverId, InetAddress address, CallbackInfoReturnable<GameProfile> cir) throws AuthenticationUnavailableException {
         Map<String, Object> arguments = new HashMap();
-        arguments.put("username", profileName);
+        arguments.put("username", profileName.getName());
         arguments.put("serverId", serverId);
         boolean tr = false;
         AuthenticationUnavailableException var6 = null;
@@ -73,7 +72,7 @@ public class ReCheckAuth {
                         result.getProperties().putAll(authSchema.getProperty());
                     }
                     LOGGER.info("logging from "+name);
-                    cir.setReturnValue(new ProfileResult(result));
+                    cir.setReturnValue(result);
                     cir.cancel();
                     tr = false;
                     AuthenticationException = false;
