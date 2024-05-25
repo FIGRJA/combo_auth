@@ -76,6 +76,9 @@ public class ReCheckAuth {
                     LOGGER.info("logging from "+name);
                     cir.setReturnValue(new ProfileResult(result));
                     cir.cancel();
+                    tr = false;
+                    AuthenticationException = false;
+                    break;
                 }
             } catch (AuthenticationUnavailableException var7) {
                 tr = true;
