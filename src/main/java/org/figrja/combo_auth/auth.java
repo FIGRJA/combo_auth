@@ -40,16 +40,21 @@ public class auth implements DedicatedServerModInitializer {
                 LOGGER.info("create new config");
                 Files.createFile(ConfFile.toPath());
                 InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("combo_auth.json");
-                reader = new JsonReader(new BufferedReader(new InputStreamReader(inputStream)));
+                if (inputStream != null) {
+                    config = gson.fromJson(new JsonReader(new BufferedReader(new InputStreamReader(inputStream))),configGson.class);
+                }else {
+                    LOGGER.info("wtf inputStream of config in jar is null");
+                }
                 PrintWriter printWriter = new PrintWriter(ConfFile);
                 Scanner scanner = new Scanner(inputStream);
                 while (scanner.hasNextLine()){printWriter.println(scanner.nextLine());}
                 scanner.close();
                 printWriter.flush();
                 printWriter.close();
-                config = gson.fromJson(reader,configGson.class);
+
                 inputStream.close();
             } catch (IOException ex) {
+                LOGGER.info("can't create new config");
                 throw new RuntimeException(ex);
             }
         }
