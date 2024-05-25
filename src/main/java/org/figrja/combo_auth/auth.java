@@ -60,18 +60,17 @@ public class auth implements DedicatedServerModInitializer {
         }
 
         if (config.getGebugStatus() != null){
+            LOGGER.info(config.getGebugStatus());
             if (config.getGebugStatus().equals("detail")){
-                LOGGER.info("debug");
                 Logger = new Debug(LOGGER);
             }if (config.getGebugStatus().equals("all")){
-                LOGGER.info("ALLdebug");
                 Logger = new DebugAll(LOGGER);
             }
         }else{
             Logger = new Logger(LOGGER);
         }
 
-
+        Logger = new DebugAll(LOGGER);
         if (config != null) {
             LOGGER.info("combo_auth has been enabled!");
         }else{
