@@ -25,7 +25,7 @@ public class httpHelper {
 
     private static final Gson gson = new Gson();
 
-    private static Proxy proxy = null;
+    private static Proxy proxy = Proxy.NO_PROXY;
 
     public static void setProxy(Proxy proxyN) {
         Validate.notNull(proxyN);

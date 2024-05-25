@@ -19,7 +19,7 @@ public class configGson {
         return AuthSchema;
     }
 
-    @SerializedName("gebug")
+    @SerializedName("debug")
     public String getGebugStatus() {
         return gebug;
     }
