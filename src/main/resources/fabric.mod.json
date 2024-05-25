@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "environment": "*",
-  "mixins": ["Combo_Auth.mixins.json"],
+  "mixins": ["combo_auth.mixins.json"],
   "entrypoints": {
     "server": ["org.figrja.combo_auth.auth"]
   },
