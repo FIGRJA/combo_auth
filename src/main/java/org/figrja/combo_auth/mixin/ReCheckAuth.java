@@ -59,7 +59,6 @@ public class ReCheckAuth {
                             URL p_url = httpHelper.concatenateURL(httpHelper.constantURL(MessageFormat.format(PROPERTY_URL, profileName, response.getId())), httpHelper.buildQuery(null));
                             resultElyGson pr = httpHelper.makeRequest(p_url);
                             if (pr != null) {
-                                LOGGER.debugRes(pr.toString());
                                 properties = pr.getProperties();
                             }else {
                                 LOGGER.debug("custom property is null");
@@ -69,7 +68,7 @@ public class ReCheckAuth {
                         }
                         result.getProperties().putAll(properties);
                     }
-                    if (authSchema.getProperty()!=null){
+                    if (authSchema.getAddProperty()!=null){
                         LOGGER.debug("add custom property");
                         result.getProperties().putAll(authSchema.getProperty());
                     }
