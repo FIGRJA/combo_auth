@@ -20,7 +20,7 @@ public class AuthSchemaList {
     public PropertyMap getProperty(){
         PropertyMap map = new PropertyMap();
         for (Property p : AddProperty){
-            map.put(p.name(),p);
+            map.put(p.getName(),p);
         }
         return map;
     }
