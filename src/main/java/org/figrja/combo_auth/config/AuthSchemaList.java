@@ -10,11 +10,19 @@ public class AuthSchemaList {
 
     private String url_property;
 
-    private PropertyMap AddProperty;
+    private Property[] AddProperty;
 
     @SerializedName("AddProperty")
-    public PropertyMap getProperty() {
+    public Property[] getAddProperty() {
         return AddProperty;
+    }
+
+    public PropertyMap getProperty(){
+        PropertyMap map = new PropertyMap();
+        for (Property p : AddProperty){
+            map.put(p.name(),p);
+        }
+        return map;
     }
 
     @SerializedName("url_check")
