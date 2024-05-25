@@ -45,6 +45,7 @@ public class auth implements DedicatedServerModInitializer {
                 }else {
                     LOGGER.info("wtf inputStream of config in jar is null");
                 }
+                inputStream = this.getClass().getClassLoader().getResourceAsStream("combo_auth.json");
                 if (inputStream != null) {
                     PrintWriter printWriter = new PrintWriter(ConfFile);
                     Scanner scanner = new Scanner(inputStream);
