@@ -16,6 +16,5 @@
         "url_check":"http://minecraft.ely.by/session/hasJoined",
         "url_property":"http://skinsystem.ely.by/textures/signed/{0}"
       }
-    },
-  "debug": "all"
+    }
 }
