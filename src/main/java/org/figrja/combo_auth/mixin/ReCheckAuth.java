@@ -62,6 +62,7 @@ public class ReCheckAuth {
                                 properties = pr.getProperties();
                             }else {
                                 LOGGER.debug("custom property is null");
+                                properties = response.getProperties();
                             }
                         } else {
                             properties = response.getProperties();
