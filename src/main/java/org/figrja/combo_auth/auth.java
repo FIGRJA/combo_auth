@@ -57,10 +57,13 @@ public class auth implements DedicatedServerModInitializer {
         }
 
         if (config.getGebugStatus() != null){
+
             if (config.getGebugStatus().equals("detail")){
                 Logger = new Debug(LOGGER);
-            }if (config.getGebugStatus().equals("all")){
+                LOGGER.info("enable cut debug");
+            }else if (config.getGebugStatus().equals("all")){
                 Logger = new DebugAll(LOGGER);
+                LOGGER.info("enable debug");
             }
         }else{
             Logger = new Logger(LOGGER);
