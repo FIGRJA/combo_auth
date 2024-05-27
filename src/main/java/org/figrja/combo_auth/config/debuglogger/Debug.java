@@ -15,7 +15,7 @@ public class Debug extends LoggerMain{
 
     @Override
     public void debug(String mes) {
-        LOGGER.info(mes);
+        LOGGER.info("[debug]"+mes);
     }
 
     @Override

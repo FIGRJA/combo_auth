@@ -12,7 +12,7 @@ public class configGson {
 
     private HashMap<String,AuthSchemaList> AuthSchema;
 
-    private String gebug;
+    private String debug;
 
     @SerializedName("AuthSchema")
     public HashMap<String,AuthSchemaList> getAuthSchema() {
@@ -21,7 +21,7 @@ public class configGson {
 
     @SerializedName("debug")
     public String getGebugStatus() {
-        return gebug;
+        return debug;
     }
 
     @SerializedName("AuthList")
