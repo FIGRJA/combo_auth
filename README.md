@@ -9,3 +9,14 @@ In order to achieve this result, it was necessary to download the patch from the
 When using this mod, I recommend setting `enforce-secure-profile=false` in the server configuration to disable message signing that **Ely,by** players do not have.
 
 At the moment, I could not make a plugin with such an idea and I'm unlikely to be able to, because this is my *first* project.
+
+Config:
+    AuthList:[ order of execution ],
+    Authschema:{
+        name:{
+            url_check: url request hasJoinedServer
+            *url_property*: url reqest profile property*(skin&cape)*
+            AddProperty[{custom property},
+                {"name":"ely,value:why not"}]
+        }
+    }
