@@ -10,7 +10,7 @@ When using this mod, I recommend setting `enforce-secure-profile=false` in the s
 
 At the moment, I could not make a plugin with such an idea and I'm unlikely to be able to, because this is my *first* project.
 
-*Config:
+Config:
 *    AuthList:[ order of execution ],
 *    Authschema:{
 *        name:{
