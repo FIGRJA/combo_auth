@@ -11,12 +11,12 @@ When using this mod, I recommend setting `enforce-secure-profile=false` in the s
 At the moment, I could not make a plugin with such an idea and I'm unlikely to be able to, because this is my *first* project.
 
 Config:
-*    AuthList:[ order of execution ],
-*    Authschema:{
-*        name:{
-*            url_check: url request hasJoinedServer
-*            *url_property*: url reqest profile property*(skin&cape)*
-*            AddProperty[{custom property},
-*                {"name":"ely,value:why not"}]
-*        }
-*    }
+    AuthList:[ order of execution ],
+    Authschema:{
+        name:{
+            url_check: url request hasJoinedServer
+            *url_property*: url reqest profile property*(skin&cape)*
+            AddProperty[{custom property},
+                {"name":"ely,value:why not"}]       
+            }
+    }
