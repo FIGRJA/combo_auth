@@ -10,14 +10,14 @@
   },
   "license": "MIT",
   "environment": "*",
-  "mixins": ["Combo_Auth.mixins.json"],
+  "mixins": ["combo_auth.mixins.json"],
   "entrypoints": {
     "server": ["org.figrja.combo_auth.auth"]
   },
   "icon": "icon.png",
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": ">=1.20.2"
+    "minecraft": ">=1.7.10"
   }
 }

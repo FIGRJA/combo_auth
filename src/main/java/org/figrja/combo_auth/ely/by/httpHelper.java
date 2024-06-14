@@ -8,6 +8,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.figrja.combo_auth.auth;
+import org.figrja.combo_auth.config.debuglogger.LoggerMain;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,11 +23,12 @@ import java.util.UUID;
 
 public class httpHelper {
 
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private static final Gson gson = new Gson();
 
-    private static Proxy proxy = null;
+    private static Proxy proxy = Proxy.NO_PROXY;
+
+    static LoggerMain LOGGER = auth.Logger;
 
     public static void setProxy(Proxy proxyN) {
         Validate.notNull(proxyN);
@@ -34,7 +37,7 @@ public class httpHelper {
 
     protected static HttpURLConnection createUrlConnection(URL url) throws IOException {
         Validate.notNull(url);
-        LOGGER.debug("Opening connection to " + url);
+        LOGGER.debugRes("Opening connection to " + url.toString());
         HttpURLConnection connection = (HttpURLConnection)url.openConnection(proxy);
         connection.setConnectTimeout(15000);
         connection.setReadTimeout(15000);
@@ -51,7 +54,7 @@ public class httpHelper {
         connection.setRequestProperty("Content-Type", contentType + "; charset=utf-8");
         connection.setRequestProperty("Content-Length", "" + postAsBytes.length);
         connection.setDoOutput(true);
-        LOGGER.debug("Writing POST data to " + url + ": " + post);
+        LOGGER.debugRes("Writing POST data to " + url + ": " + post);
         OutputStream outputStream = null;
 
         try {
@@ -61,7 +64,7 @@ public class httpHelper {
             IOUtils.closeQuietly(outputStream);
         }
 
-        LOGGER.debug("Reading data from " + url);
+        LOGGER.debugRes("Reading data from " + url);
         InputStream inputStream = null;
 
         String var10;
@@ -71,20 +74,20 @@ public class httpHelper {
                 inputStream = connection.getInputStream();
                 result = IOUtils.toString(inputStream, Charsets.UTF_8);
                 LOGGER.debug("Successful read, server response was " + connection.getResponseCode());
-                LOGGER.debug("Response: " + result);
+                LOGGER.debugRes("Response: " + result);
                 return result;
             } catch (IOException var19) {
                 IOUtils.closeQuietly(inputStream);
                 inputStream = connection.getErrorStream();
                 if (inputStream == null) {
-                    LOGGER.debug("Request failed", var19);
+                    LOGGER.debug("Request failed");
                     throw var19;
                 }
 
-                LOGGER.debug("Reading error page from " + url);
+                LOGGER.debugRes("Reading error page from " + url);
                 result = IOUtils.toString(inputStream, Charsets.UTF_8);
                 LOGGER.debug("Successful read, server response was " + connection.getResponseCode());
-                LOGGER.debug("Response: " + result);
+                LOGGER.debugRes("Response: " + result);
                 var10 = result;
             }
         } finally {
@@ -97,7 +100,7 @@ public class httpHelper {
     public static String performGetRequest(URL url) throws IOException {
         Validate.notNull(url);
         HttpURLConnection connection = createUrlConnection(url);
-        LOGGER.debug("Reading data from " + url);
+        LOGGER.debugRes("Reading data from " + url);
         InputStream inputStream = null;
 
         String var6;
@@ -107,21 +110,21 @@ public class httpHelper {
                 inputStream = connection.getInputStream();
                 result = IOUtils.toString(inputStream, Charsets.UTF_8);
                 LOGGER.debug("Successful read, server response was " + connection.getResponseCode());
-                LOGGER.debug("Response: " + result);
+                LOGGER.debugRes("Response: " + result);
                 return result;
             } catch (IOException var10) {
                 IOUtils.closeQuietly(inputStream);
                 inputStream = connection.getErrorStream();
                 if (inputStream == null) {
-                    LOGGER.debug("Request failed", var10);
+                    LOGGER.debug("Request failed");
                     throw var10;
                 }
             }
 
-            LOGGER.debug("Reading error page from " + url);
+            LOGGER.debugRes("Reading error page from " + url);
             result = IOUtils.toString(inputStream, Charsets.UTF_8);
             LOGGER.debug("Successful read, server response was " + connection.getResponseCode());
-            LOGGER.debug("Response: " + result);
+            LOGGER.debugRes("Response: " + result);
             var6 = result;
         } finally {
             IOUtils.closeQuietly(inputStream);
@@ -154,7 +157,7 @@ public class httpHelper {
             try {
                 builder.append(URLEncoder.encode((String)entry.getKey(), "UTF-8"));
             } catch (UnsupportedEncodingException var6) {
-                LOGGER.error("Unexpected exception building query", var6);
+                LOGGER.info("Unexpected exception building query");
             }
 
             if (entry.getValue() != null) {
@@ -163,7 +166,7 @@ public class httpHelper {
                 try {
                     builder.append(URLEncoder.encode(entry.getValue().toString(), "UTF-8"));
                 } catch (UnsupportedEncodingException var5) {
-                    LOGGER.error("Unexpected exception building query", var5);
+                    LOGGER.info("Unexpected exception building query");
                 }
             }
         }
@@ -180,7 +183,7 @@ public class httpHelper {
         }
     }
 
-    protected static resultElyGson makeRequest(URL url) throws AuthenticationException {
+    public static resultElyGson makeRequest(URL url) throws AuthenticationException {
         try {
             String jsonResult = performGetRequest(url) ;
             resultElyGson result = gson.fromJson(jsonResult, resultElyGson.class);

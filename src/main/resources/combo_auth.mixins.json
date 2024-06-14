@@ -1,11 +1,10 @@
 {
-	"required": true,
-	"minVersion": "0.8",
-	"package": "org.figrja.combo_auth.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"huckServerLogin",
-		"huckHttpTest"
-    ],
-	"client": []
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.figrja.combo_auth.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "huckServerLogin"
+  ],
+  "client": []
 }

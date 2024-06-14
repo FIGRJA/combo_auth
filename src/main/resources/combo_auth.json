@@ -1,0 +1,20 @@
+{
+  "AuthList": [
+    "mojang",
+    "elyby"
+  ],
+  "AuthSchema":
+    {
+      "mojang": {
+        "url_check":"https://sessionserver.mojang.com/session/minecraft/hasJoined" ,
+        "AddProperty": [{
+          "name": "ely",
+          "value": "lol"
+        }]
+      },
+      "elyby": {
+        "url_check":"http://minecraft.ely.by/session/hasJoined",
+        "url_property":"http://skinsystem.ely.by/textures/signed/{0}"
+      }
+    }
+}
