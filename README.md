@@ -8,7 +8,7 @@ In order to achieve this result, it was necessary to download the patch from the
 
 When using this mod, I recommend setting `enforce-secure-profile=false` in the server configuration to disable message signing that **Ely,by** players do not have.
 
-At the moment I have not been able to make a plugin with such an idea and I am trying in [combo-auth-agent](https://github.com/FIGRJA/combo-auth-agent).
+## At the moment, I have managed to create an agent with this idea for other kernels besides fabric in [combo-auth-agent](https://github.com/FIGRJA/combo-auth-agent).
 
 Config:
 ``` json
