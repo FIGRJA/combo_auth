@@ -2,7 +2,7 @@ This small mod allows players with Ely.by's auth system to enter the server with
 
 The mod just combines two or more authentication systems without interfering with the server itself.
 
-First, authentication occurs on the **Mojang** servers, and after an unsuccessful login, a check occurs on **Ely.by** or other servers, depending on the config. If it did not pass either, then the player can't join the server.
+First, authentication occurs on the **Mojang** servers, and after an unsuccessful login, a check occurs on **Ely.by** or other servers, depending on the config. If it didn't pass either, then the player can't join the server.
 
 In order to achieve this result, it was necessary to download the patch from the official site of Ely.by, which wasn't convenient and prevented players with official accounts from logging in.
 
