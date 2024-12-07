@@ -3,10 +3,11 @@
   "id": "combo_auth",
   "version": "${version}",
   "name": "Combo Auth",
-  "description": "мод позволяет заходить игрокам на сервер имея аккаунт Ely.by или Mojang( официальое )",
+  "description": "This small mod allows players with Ely.by's auth system to enter the server with online_mode=true without interfering with Mojang's auth system.",
   "authors": ["FIGRJA"],
   "contact": {
-    "homepage": "https://vk.com/FIGRJA"
+    "homepage": "https://modrinth.com/mod/combo-auth",
+    "sources": "https://github.com/FIGRJA/combo_auth"
   },
   "license": "MIT",
   "environment": "*",

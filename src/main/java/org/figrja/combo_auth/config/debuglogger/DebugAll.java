@@ -15,11 +15,11 @@ public class DebugAll extends LoggerMain{
 
     @Override
     public void debug(String mes) {
-        LOGGER.info("[debug]"+mes);
+        LOGGER.info("[combo_auth debug] "+mes);
     }
 
     @Override
     public void debugRes(String mes) {
-        LOGGER.info("[debug]"+mes);
+        LOGGER.info("[combo_auth debug] "+mes);
     }
 }

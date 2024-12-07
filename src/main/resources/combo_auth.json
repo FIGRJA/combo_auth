@@ -9,12 +9,13 @@
         "url_check":"https://sessionserver.mojang.com/session/minecraft/hasJoined" ,
         "AddProperty": [{
           "name": "ely",
-          "value": "lol"
+          "value": "but why are you asking?"
         }]
       },
       "elyby": {
-        "url_check":"http://minecraft.ely.by/session/hasJoined",
-        "url_property":"http://skinsystem.ely.by/textures/signed/{0}"
+        "url_check":"https://authserver.ely.by/session/hasJoined",
+        "url_property":"https://skinsystem.ely.by/textures/signed/{0}"
       }
-    }
+    },
+  "debug": "detail"
 }

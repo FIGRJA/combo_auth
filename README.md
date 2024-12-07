@@ -1,25 +1,25 @@
-This small mod allows players with Ely.by accounts to enter the server with `online_mode=true` without interfering with players with Mojang accounts.
+This small mod allows players with Ely.by auth server to enter the server with `online_mode=true` setting without interfering with Mojang auth system.
 
 The mod just combines two or more authentication systems without interfering with the server itself.
 
-First, authentication occurs on the **Mojang** servers, and after an unsuccessful login, a check occurs on **Ely.by** or other servers, depending on the config . If there and there did not pass the test, then the player is **not allowed** on the server.
+First, authentication occurs on the **Mojang** servers, and after an unsuccessful login, a check occurs on **Ely.by** or other servers, depending on the config. If it did not pass either, then the player can't join the server.
 
-In order to achieve this result, it was necessary to download the patch from the official site Ely.by, which was not convenient and prevented players with official accounts from logging in.
+In order to achieve this result, it was necessary to download the patch from the official site of Ely.by, which wasn't convenient and prevented players with official accounts from logging in.
 
-When using this mod, I recommend setting `enforce-secure-profile=false` in the server configuration to disable message signing that **Ely,by** players do not have.
+When using this mod, it's recommended to change `enforce-secure-profile=true` to `enforce-secure-profile=false` in the `server.properties` file to disable message signing that **Ely.by** players don't have.
 
-## At the moment, I have managed to create an agent with this idea for other kernels besides fabric in [combo-auth-agent](https://github.com/FIGRJA/combo-auth-agent).
+## At the moment, I have managed to create an agent with this idea for other server cores besides fabric in [combo-auth-agent](https://github.com/FIGRJA/combo-auth-agent).
 
-Config:
-``` json
-"AuthList":[ "order of execution" ],
+Config example:
+```json
+"AuthList":[ "(order of execution)" ],
 "AuthSchema":{
-    "name":{
-        "url_check": "url request hasJoinedServer"
-        "url_property" : "url reqest profile property (skin&cape)"
-        "AddProperty" : [{"custom" : "property"},
-            {"name":"ely","value":"why not"}]
+    "(name)":{
+        "url_check": "(hasJoined request)"
+        "url_property" : "(texture request)"
+        "AddProperty" : [{"(custom)" : "(property)"},
+            {"name":"ely","value":"but why are you asking?"}]
     }
 },
-"dubug" : "all / detal / (not necessary)"     
-```   
+"debug" : "all/detail"
+```
