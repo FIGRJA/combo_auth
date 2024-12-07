@@ -21,5 +21,5 @@ Config example:
             {"name":"ely","value":"but why are you asking?"}]
     }
 },
-"debug" : "all/detail"
+"debug" : "all/detail/(nothing)"
 ```
