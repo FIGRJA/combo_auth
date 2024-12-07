@@ -1,4 +1,4 @@
-This small mod allows players with Ely.by auth server to enter the server with `online_mode=true` setting without interfering with Mojang auth system.
+This small mod allows players with Ely.by's auth system to enter the server with `online_mode=true` setting without interfering with Mojang's auth system.
 
 The mod just combines two or more authentication systems without interfering with the server itself.
 
