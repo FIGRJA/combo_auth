@@ -28,7 +28,7 @@ public class auth implements DedicatedServerModInitializer {
 
     @Override
     public void onInitializeServer() {
-        LOGGER.info("start loading config");
+        LOGGER.info("Loading config...");
 
         File ConfFile = FabricLoader.getInstance().getConfigDir().resolve( "combo_auth.json" ).toFile();
 
@@ -37,7 +37,7 @@ public class auth implements DedicatedServerModInitializer {
             LOGGER.info(config == null);
         } catch (FileNotFoundException e) {
             try {
-                LOGGER.info("create new config");
+                LOGGER.info("Creating new config...");
                 Files.createFile(ConfFile.toPath());
                 InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("combo_auth.json");
                 if (inputStream != null) {
@@ -54,14 +54,14 @@ public class auth implements DedicatedServerModInitializer {
                     }
                     scanner.close();
 
-                printWriter.flush();
-                printWriter.close();
+                    printWriter.flush();
+                    printWriter.close();
                 }else {
                     LOGGER.info("wtf inputStream of config in jar is null too");
                 }
                 inputStream.close();
             } catch (IOException ex) {
-                LOGGER.info("can't create new config");
+                LOGGER.info("Can't create new config!");
                 throw new RuntimeException(ex);
             }
         }
@@ -69,10 +69,10 @@ public class auth implements DedicatedServerModInitializer {
         if (config.getGebugStatus() != null){
             if (config.getGebugStatus().equals("detail")){
                 Logger = new Debug(LOGGER);
-                LOGGER.info("enable cut debug");
+                LOGGER.info("Enabled debug");
             }if (config.getGebugStatus().equals("all")){
                 Logger = new DebugAll(LOGGER);
-                LOGGER.info("enable debug");
+                LOGGER.info("Enabled full debug");
             }
         }else{
             Logger = new Logger(LOGGER);
